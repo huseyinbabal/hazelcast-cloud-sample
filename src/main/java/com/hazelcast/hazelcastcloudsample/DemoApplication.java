@@ -29,6 +29,7 @@ public class DemoApplication implements ApplicationRunner {
 		config.getNetworkConfig().setSSLConfig(new SSLConfig().setEnabled(true).setProperties(props));
 		config.setGroupConfig(new GroupConfig("<cluster_name>", "<group_password>"));
 		config.setProperty(ClientProperty.HAZELCAST_CLOUD_DISCOVERY_TOKEN.getName(), "<token>");
+		config.setProperty(HazelcastCloudDiscovery.CLOUD_URL_BASE_PROPERTY.getName(), "https://coordinator.hazelcast.cloud");
 		HazelcastInstance client = HazelcastClient.newHazelcastClient(config);
 		IMap map = client.getMap("map");
 		for (int i = 0; i < 100; i++) {
